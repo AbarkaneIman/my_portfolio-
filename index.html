@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!-- Déclaration du type de document HTML5 -->
+<html lang="fr">
+<!-- Balise racine HTML avec langue française -->
+<head>
+    <!-- En-tête du document contenant les métadonnées -->
+    <meta charset="UTF-8">
+    <!-- Encodage des caractères en UTF-8 pour supporter les accents -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configuration responsive : adaptation à la largeur de l'écran -->
+    <title>Iman Abarkane - Portfolio</title>
+    <!-- Titre affiché dans l'onglet du navigateur -->
+    
+    <!-- Lien vers le fichier CSS externe -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Élément décoratif qui suit le curseur -->
+    <div class="cursor-glow"></div>
+
+    <!-- En-tête fixe avec navigation -->
+    <header>
+        <nav>
+            <!-- Logo/Initiales -->
+            <div class="logo">IA</div>
+            
+            <!-- Liste des liens de navigation -->
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#apropos">À propos</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <!-- Bouton de téléchargement du CV -->
+                    <a href="#" class="cv-download" onclick="downloadCV(event)">
+                        <span>📥</span> Télécharger CV
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Hero - Page d'accueil -->
+    <section class="hero" id="accueil">
+        <!-- Fond avec grille animée -->
+        <div class="grid-bg"></div>
+        
+        <!-- Formes flottantes décoratives -->
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <!-- Contenu principal du hero -->
+        <div class="hero-content">
+            <!-- Badge "Master Data Science" -->
+            <div class="hero-tag">🎓 Master Data Science</div>
+            
+            <!-- Titre principal avec nom en dégradé -->
+            <h1>Bonjour, je suis <span class="gradient-text">Iman Abarkane</span></h1>
+            
+            <!-- Description courte -->
+            <p>Data Scientist passionnée par le Machine Learning, Deep Learning et l'Intelligence Artificielle. Je transforme les données en solutions intelligentes.</p>
+            
+            <!-- Boutons d'appel à l'action -->
+            <div class="cta-buttons">
+                <a href="#projets" class="cta-button cta-primary">Voir mes projets</a>
+                <a href="#contact" class="cta-button cta-secondary">Me contacter</a>
+                <a href="#" class="cta-button cta-secondary" onclick="downloadCV(event)">
+                    <span>📥</span> Télécharger mon CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section class="about" id="apropos">
+        <div class="section-header">
+            <!-- Badge de section -->
+            <div class="section-tag">À propos</div>
+            <!-- Titre de section -->
+            <h2 class="section-title">Qui suis-je ?</h2>
+        </div>
+        
+        <div class="about-content reveal">
+            <!-- Texte de présentation -->
+            <p class="about-text">
+                Étudiante en Master Data Science à l'École Nationale Supérieure de Tétouan, 
+                je suis passionnée par la Data Science, le Machine Learning et le Deep Learning. 
+                Je conçois des solutions de bout en bout, de l'ingénierie des données au déploiement 
+                de modèles intelligents. Diplômée d'une Licence en Sciences Mathématiques et Informatique, 
+                je suis curieuse et motivée, j'aime travailler sur des projets concrets et innovants 
+                en IA et Big Data.
+            </p>
+            
+            <!-- Grille des compétences -->
+            <div class="skills-grid">
+                <!-- Catégorie Data Science & IA -->
+                <div class="skill-category">
+                    <h3>🤖 Data Science & IA</h3>
+                    <ul>
+                        <li>Machine Learning</li>
+                        <li>Deep Learning</li>
+                        <li>Computer Vision</li>
+                        <li>PyTorch, TensorFlow</li>
+                        <li>Scikit-learn, OpenCV</li>
+                    </ul>
+                </div>
+                
+                <!-- Catégorie Développement -->
+                <div class="skill-category">
+                    <h3>💻 Développement</h3>
+                    <ul>
+                        <li>Python, Java, Dart</li>
+                        <li>React.js, Flutter</li>
+                        <li>Django, Flask, Spring Boot</li>
+                        <li>API REST</li>
+                        <li>Git & GitHub</li>
+                    </ul>
+                </div>
+                
+                <!-- Catégorie Big Data & Bases de Données -->
+                <div class="skill-category">
+                    <h3>📊 Big Data & Bases de Données</h3>
+                    <ul>
+                        <li>Hadoop, Pig</li>
+                        <li>MongoDB, Firebase</li>
+                        <li>MySQL, PostgreSQL</li>
+                        <li>Power BI, Excel</li>
+                        <li>Data Analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section class="projects" id="projets">
+        <div class="section-header">
+            <div class="section-tag">Portfolio</div>
+            <h2 class="section-title">Mes Projets</h2>
+        </div>
+        
+        <!-- Grille des projets -->
+        <div class="projects-grid">
+            <!-- Projet 1 : Classification d'arbres 3D -->
+            <div class="project-card reveal">
+                <div class="project-icon">🌳</div>
+                <h3>Classification d'espèces d'arbres 3D</h3>
+                <p>Classification d'espèces à partir de point clouds 3D avec prétraitement, génération de vues multi-view et CNN.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">PyTorch</span>
+                    <span class="tech-tag">Open3D</span>
+                    <span class="tech-tag">CNN</span>
+                </div>
+            </div>
+
+            <!-- Projet 2 : Application Mobile -->
+            <div class="project-card reveal">
+                <div class="project-icon">📱</div>
+                <h3>Application Mobile de Réclamations</h3>
+                <p>Application mobile de gestion des réclamations étudiantes avec authentification sécurisée, suivi en temps réel et gestion des rôles.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Flutter</span>
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">Dart</span>
+                </div>
+            </div>
+
+            <!-- Projet 3 : Prédiction Prix Immobiliers -->
+            <div class="project-card reveal">
+                <div class="project-icon">🏠</div>
+                <h3>Prédiction des Prix Immobiliers</h3>
+                <p>Application web de prédiction des prix avec prétraitement des données, modèle de régression et implémentation de la descente de gradient from scratch.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Django</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">ML</span>
+                </div>
+            </div>
+
+            <!-- Projet 4 : Classification Chats vs Chiens -->
+            <div class="project-card reveal">
+                <div class="project-icon">🐱</div>
+                <h3>Classification Chats vs Chiens</h3>
+                <p>Modèle de classification d'images basé sur des caractéristiques visuelles avec interface graphique interactive.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Computer Vision</span>
+                    <span class="tech-tag">OpenCV</span>
+                </div>
+            </div>
+
+            <!-- Projet 5 : Gestionnaire Rendez-vous -->
+            <div class="project-card reveal">
+                <div class="project-icon">🏥</div>
+                <h3>Gestionnaire Rendez-vous Hospitaliers</h3>
+                <p>Application web pour gérer patients, médecins et rendez-vous avec authentification sécurisée, dashboard admin et export PDF/Excel.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">React.js</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">MongoDB</span>
+                </div>
+            </div>
+
+            <!-- Projet 6 : Big Data & Analytics -->
+            <div class="project-card reveal">
+                <div class="project-icon">📊</div>
+                <h3>Big Data & Analytics</h3>
+                <p>Projets d'analyse et traitement de données massives utilisant Hadoop, Pig et outils BI pour générer des insights exploitables.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Hadoop</span>
+                    <span class="tech-tag">Pig</span>
+                    <span class="tech-tag">Power BI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <div class="section-tag">Contact</div>
+            <h2 class="section-title">Restons en contact</h2>
+        </div>
+        
+        <!-- Grille des moyens de contact -->
+        <div class="contact-grid reveal">
+            <!-- Email -->
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <label>Email</label>
+                <a href="mailto:imanabarkane03@gmail.com">imanabarkane03@gmail.com</a>
+            </div>
+            
+            <!-- Téléphone -->
+            <div class="contact-card">
+                <div class="contact-icon">📱</div>
+                <label>Téléphone</label>
+                <a href="tel:+212650086289">+212 650 08 62 89</a>
+            </div>
+            
+            <!-- GitHub -->
+            <div class="contact-card">
+                <div class="contact-icon">💻</div>
+                <label>GitHub</label>
+                <a href="https://github.com/AbarkaneIman" target="_blank">github.com/AbarkaneIman</a>
+            </div>
+            
+            <!-- LinkedIn -->
+            <div class="contact-card">
+                <div class="contact-icon">💼</div>
+                <label>LinkedIn</label>
+                <a href="https://www.linkedin.com/in/imanabarkane-5203702b2" target="_blank">linkedin.com/in/imanabarkane</a>
+            </div>
+            
+            <!-- Kaggle -->
+            <div class="contact-card">
+                <div class="contact-icon">📊</div>
+                <label>Kaggle</label>
+                <a href="https://www.kaggle.com/imanabarkane" target="_blank">kaggle.com/imanabarkane</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>&copy; 2026 Iman Abarkane. Conçu avec passion ✨</p>
+    </footer>
+
+    <!-- Lien vers le fichier JavaScript externe -->
+    <script src="script.js"></script>
+</body>
+</html>

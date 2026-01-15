@@ -1,0 +1,675 @@
+/* ========================================
+   RÉINITIALISATION ET VARIABLES GLOBALES
+   ======================================== */
+
+/* Sélecteur universel : appliqué à tous les éléments */
+* {
+    margin: 0;              /* Supprime les marges par défaut */
+    padding: 0;             /* Supprime les espacements internes par défaut */
+    box-sizing: border-box; /* Inclut padding et border dans la largeur totale */
+}
+
+/* Définition des variables CSS globales (couleurs) */
+:root {
+    --primary: #00f5ff;   /* Couleur principale : cyan électrique */
+    --secondary: #ff00ff; /* Couleur secondaire : magenta */
+    --accent: #7c3aed;    /* Couleur d'accentuation : violet */
+    --dark: #0a0a0f;      /* Fond sombre principal */
+    --darker: #050508;    /* Fond encore plus sombre */
+}
+
+/* Style du corps de la page */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--darker);  /* Utilisation de la variable CSS */
+    color: #fff;                /* Texte blanc */
+    overflow-x: hidden;         /* Cache le débordement horizontal */
+    line-height: 1.6;          /* Hauteur de ligne pour lisibilité */
+}
+
+
+/* ========================================
+   EFFET DE LUEUR DU CURSEUR
+   ======================================== */
+
+.cursor-glow {
+    position: fixed;        /* Position fixe par rapport à la fenêtre */
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 245, 255, 0.15) 0%, transparent 70%);
+    pointer-events: none;   /* N'interfère pas avec les clics */
+    z-index: 9999;         /* Au-dessus de tous les autres éléments */
+    transform: translate(-50%, -50%);  /* Centre l'élément sur le curseur */
+    transition: opacity 0.3s;
+}
+
+
+/* ========================================
+   EN-TÊTE ET NAVIGATION
+   ======================================== */
+
+header {
+    position: fixed;        /* Reste en haut lors du scroll */
+    width: 100%;
+    padding: 2rem 5%;
+    background: rgba(5, 5, 8, 0.8);      /* Fond semi-transparent */
+    backdrop-filter: blur(20px);          /* Effet de flou sur l'arrière-plan */
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+}
+
+nav {
+    display: flex;                    /* Disposition flexible */
+    justify-content: space-between;   /* Espace entre logo et liens */
+    align-items: center;              /* Alignement vertical centré */
+    max-width: 1400px;
+    margin: 0 auto;                   /* Centrage horizontal */
+}
+
+/* Logo avec dégradé */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;    /* Applique le dégradé au texte */
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -1px;
+}
+
+/* Liste des liens de navigation */
+.nav-links {
+    display: flex;
+    gap: 3rem;              /* Espacement entre les éléments */
+    list-style: none;       /* Supprime les puces */
+    align-items: center;
+}
+
+/* Style des liens de navigation */
+.nav-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    position: relative;     /* Pour positionner le pseudo-élément */
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+/* Barre de soulignement animée au survol */
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transition: all 0.3s;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::before {
+    width: 100%;
+}
+
+/* Bouton de téléchargement du CV */
+.cv-download {
+    padding: 0.6rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #000;
+    text-decoration: none;
+    border-radius: 50px;    /* Bouton pilule */
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 5px 20px rgba(0, 245, 255, 0.3);
+}
+
+.cv-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 245, 255, 0.5);
+}
+
+
+/* ========================================
+   SECTION HERO (PAGE D'ACCUEIL)
+   ======================================== */
+
+.hero {
+    min-height: 100vh;      /* Hauteur minimale = hauteur de la fenêtre */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 5%;
+    overflow: hidden;
+}
+
+/* Fond avec grille animée */
+.grid-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+}
+
+/* Animation de défilement de la grille */
+@keyframes gridMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50px); }
+}
+
+/* Conteneur des formes flottantes */
+.floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Formes décoratives flottantes */
+.shape {
+    position: absolute;
+    border-radius: 50%;     /* Forme circulaire */
+    filter: blur(80px);     /* Flou important pour effet de lueur */
+    opacity: 0.3;
+    animation: float 20s infinite;
+}
+
+/* Positionnement et couleurs des 3 formes */
+.shape:nth-child(1) {
+    width: 400px;
+    height: 400px;
+    background: var(--primary);
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape:nth-child(2) {
+    width: 300px;
+    height: 300px;
+    background: var(--secondary);
+    bottom: 20%;
+    right: 10%;
+    animation-delay: 5s;
+}
+
+.shape:nth-child(3) {
+    width: 250px;
+    height: 250px;
+    background: var(--accent);
+    top: 50%;
+    left: 50%;
+    animation-delay: 10s;
+}
+
+/* Animation de flottement */
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-50px, 50px) scale(0.9);
+    }
+}
+
+/* Contenu principal du hero */
+.hero-content {
+    max-width: 900px;
+    text-align: center;
+    z-index: 2;
+}
+
+/* Badge "Master Data Science" */
+.hero-tag {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    animation: fadeInDown 1s ease;
+}
+
+/* Titre principal avec taille responsive */
+.hero h1 {
+    font-size: clamp(3rem, 10vw, 6rem);  /* min 3rem, idéal 10vw, max 6rem */
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    animation: fadeInUp 1s ease 0.2s backwards;
+}
+
+/* Texte avec dégradé (pour le nom) */
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Paragraphe de description */
+.hero p {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 3rem;
+    animation: fadeInUp 1s ease 0.4s backwards;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Conteneur des boutons CTA */
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    animation: fadeInUp 1s ease 0.6s backwards;
+    flex-wrap: wrap;
+}
+
+/* Style de base des boutons CTA */
+.cta-button {
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Bouton primaire avec dégradé */
+.cta-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #000;
+    box-shadow: 0 10px 40px rgba(0, 245, 255, 0.3);
+}
+
+.cta-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 50px rgba(0, 245, 255, 0.5);
+}
+
+/* Bouton secondaire avec bordure */
+.cta-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.cta-secondary:hover {
+    background: rgba(0, 245, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+
+/* ========================================
+   SECTION À PROPOS
+   ======================================== */
+
+.about {
+    padding: 8rem 5%;
+    background: var(--dark);
+    position: relative;
+}
+
+/* En-tête de section */
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+/* Badge de section */
+.section-tag {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(124, 58, 237, 0.1);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 50px;
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Titre de section */
+.section-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+/* Conteneur du contenu */
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Texte de présentation */
+.about-text {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.9;
+    margin-bottom: 3rem;
+}
+
+/* Grille des compétences */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+/* Carte de catégorie de compétences */
+.skill-category {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s;
+}
+
+.skill-category:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(0, 245, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+/* Titre de catégorie */
+.skill-category h3 {
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Liste des compétences */
+.skill-category ul {
+    list-style: none;
+}
+
+.skill-category li {
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0.4rem 0;
+    font-size: 0.95rem;
+}
+
+
+/* ========================================
+   SECTION PROJETS
+   ======================================== */
+
+.projects {
+    padding: 8rem 5%;
+    background: var(--darker);
+}
+
+/* Grille des projets */
+.projects-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+}
+
+/* Carte de projet */
+.project-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border-radius: 25px;
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Barre colorée en haut de la carte */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform: scaleX(0);
+    transition: transform 0.5s;
+}
+
+.project-card:hover::before {
+    transform: scaleX(1);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 245, 255, 0.3);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    box-shadow: 0 25px 60px rgba(0, 245, 255, 0.15);
+}
+
+/* Icône du projet */
+.project-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Titre du projet */
+.project-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Description du projet */
+.project-card p {
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+/* Conteneur des tags technologiques */
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Tag de technologie individuel */
+.tech-tag {
+    padding: 0.4rem 1rem;
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid rgba(0, 245, 255, 0.2);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--primary);
+}
+
+
+/* ========================================
+   SECTION CONTACT
+   ======================================== */
+
+.contact {
+    padding: 8rem 5%;
+    background: var(--dark);
+    text-align: center;
+}
+
+/* Grille des moyens de contact */
+.contact-grid {
+    max-width: 900px;
+    margin: 3rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+/* Carte de contact */
+.contact-card {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 245, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Icône de contact */
+.contact-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Lien de contact */
+.contact-card a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+    display: block;
+}
+
+.contact-card:hover a {
+    color: var(--primary);
+}
+
+/* Label de contact */
+.contact-card label {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* ========================================
+   PIED DE PAGE
+   ======================================== */
+
+footer {
+    padding: 3rem 5%;
+    text-align: center;
+    background: var(--darker);
+    color: rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+/* Animation d'apparition par le bas */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation d'apparition par le haut */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Classe pour l'animation au scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* Navigation mobile */
+    .nav-links {
+        gap: 1.5rem;
+        font-size: 0.85rem;
+    }
+
+    .cv-download {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    /* Boutons CTA en colonne */
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    /* Grilles en une seule colonne */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
