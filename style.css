@@ -12,7 +12,7 @@
 /* Définition des variables CSS globales (couleurs) */
 :root {
     --primary: #00f5ff;   /* Couleur principale : cyan électrique */
-    --secondary: #ff00ff; /* Couleur secondaire : magenta */
+    --secondary: #d0ff00; /* Couleur secondaire : magenta */
     --accent: #7c3aed;    /* Couleur d'accentuation : violet */
     --dark: #0a0a0f;      /* Fond sombre principal */
     --darker: #050508;    /* Fond encore plus sombre */
